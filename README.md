@@ -1,15 +1,15 @@
-# HTMLCleaner
+# HtmlCleaner
 
 Copyright (c) 2006-2012, Vladimir Nikic and the HtmlCleaner team. All rights reserved.
 
-	This is a fork of the orginal HTMLCleaner project by Vladimir Nikic found on http://htmlcleaner.sourceforge.net/
+	This is a fork of the orginal HtmlCleaner project by Vladimir Nikic found on http://htmlcleaner.sourceforge.net/
 
 It's been changed to support more types of finder methods in the TagNode.java 
 type, the core of this library. And JUnit tests for that as well. I forked this
 code because it seemed like one of the better HTML parsers out there, with a 
 decent XPath implementation.
 
-The original HTMLCleaner codebase appears to be abandoned, no changes since Feb 2011.
+The original HtmlCleaner codebase appears to be abandoned, no changes since Feb 2011.
 
 	Redistribution and use of this software in source and binary forms, 
 	with or without modification, are permitted provided that the 
