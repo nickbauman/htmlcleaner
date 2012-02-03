@@ -1,3 +1,14 @@
 push_local_repo.sh
 bin
-target
+target/htmlcleaner-2.2.3-sources.jar
+target/htmlcleaner-2.2.3-sources.jar.asc
+target/htmlcleaner-2.2.3-test-sources.jar
+target/htmlcleaner-2.2.3-test-sources.jar.asc
+target/htmlcleaner-2.2.3.jar
+target/htmlcleaner-2.2.3.jar.asc
+target/htmlcleaner-2.2.3.pom
+target/htmlcleaner-2.2.3.pom.asc
+target/maven-archiver
+target/surefire
+target/surefire-reports
+target/test-classes
