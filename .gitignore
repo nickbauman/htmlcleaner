@@ -8,6 +8,14 @@ target/htmlcleaner-2.2.3.jar
 target/htmlcleaner-2.2.3.jar.asc
 target/htmlcleaner-2.2.3.pom
 target/htmlcleaner-2.2.3.pom.asc
+target/htmlcleaner-2.2.4-sources.jar
+target/htmlcleaner-2.2.4-sources.jar.asc
+target/htmlcleaner-2.2.4-test-sources.jar
+target/htmlcleaner-2.2.4-test-sources.jar.asc
+target/htmlcleaner-2.2.4.jar
+target/htmlcleaner-2.2.4.jar.asc
+target/htmlcleaner-2.2.4.pom
+target/htmlcleaner-2.2.4.pom.asc
 target/maven-archiver
 target/surefire
 target/surefire-reports

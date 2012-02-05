@@ -6,7 +6,7 @@
 	<groupId>net.sourceforge.htmlcleaner</groupId>
 	<artifactId>htmlcleaner</artifactId>
 	<packaging>jar</packaging>
-	<version>2.2.3</version>
+	<version>2.2.4</version>
 	<name>HtmlCleaner</name>
 	<description>
 		This is a fork of the original HtmlCleaner. HtmlCleaner is

@@ -6,7 +6,7 @@ import java.util.Map;
 
 import junit.framework.TestCase;
 
-public class TagNodeValueAttNamesAndValuesConditionTest extends TestCase {
+public class TagNodeNameValueAttNamesAndValuesConditionTest extends TestCase {
 
 	private HtmlCleaner cleaner;
 
@@ -20,7 +20,7 @@ public class TagNodeValueAttNamesAndValuesConditionTest extends TestCase {
 		Map<String, String> attrMap = new HashMap<String, String>();
 		attrMap.put("id", "error1");
 		attrMap.put("class", "error");
-		TagNode result = node.findElementWithValueAttNamesAndValues("This is an error",
+		TagNode result = node.findElementWithNameAndValueAndAttNamesAndValues("h3", "This is an error",
 				attrMap.keySet(), attrMap.values(), true, false);
 		assertNotNull(result);
 		assertEquals(attrMap, result.getAttributes());
@@ -33,10 +33,10 @@ public class TagNodeValueAttNamesAndValuesConditionTest extends TestCase {
 		Map<String, String> attrMap = new HashMap<String, String>();
 		attrMap.put("id", "error1");
 		attrMap.put("class", "error");
-		TagNode[] results = node.getElementsWithValueAttNamesAndValues("This is an error",
+		TagNode[] results = node.getElementsWithNameAndValueAndAttNamesAndValues("h3", "This is an error",
 				attrMap.keySet(), attrMap.values(), true, false);
 		assertNotNull(results);
-		assertEquals(2, results.length);
+		assertEquals(1, results.length);
 		for (int i = 0; i < results.length; i++) {
 			for (Map.Entry<String, String> attrpair : attrMap.entrySet()) {
 				assertEquals(attrpair.getValue(), results[i].getAttributes()

@@ -193,6 +193,43 @@ public class TagNode extends TagToken implements HtmlNode {
 		}
 	}
 
+	public class TagNodeNameValueAttNamesAndValuesCondition implements
+			ITagNodeCondition {
+
+		private List<TagNodeAttValueCondition> conditions = new ArrayList<TagNodeAttValueCondition>();
+		private String tagValue;
+		private String elementName;
+
+		public TagNodeNameValueAttNamesAndValuesCondition(
+				Collection<String> nameColl, Collection<String> valColl,
+				String elementName, String value, boolean isCaseSensitive) {
+			this.tagValue = value;
+			this.elementName = elementName;
+
+			String[] names = nameColl.toArray(new String[nameColl.size()]);
+			String[] values = valColl.toArray(new String[valColl.size()]);
+			for (int i = 0; i < values.length; i++) {
+				conditions.add(new TagNodeAttValueCondition(names[i],
+						values[i], isCaseSensitive));
+			}
+		}
+
+		@Override
+		public boolean satisfy(TagNode tagnode) {
+			if (tagnode.getName().equals(this.elementName)) {
+				for (TagNodeAttValueCondition c : conditions) {
+					if (!c.satisfy(tagnode)) {
+						return false;
+					}
+				}
+				if (-1 != tagnode.getText().indexOf(this.tagValue)) {
+					return true;
+				}
+			}
+			return false;
+		}
+	}
+
 	private TagNode parent = null;
 	private Map<String, String> attributes = new LinkedHashMap<String, String>();
 	private List children = new ArrayList();
@@ -564,18 +601,36 @@ public class TagNode extends TagToken implements HtmlNode {
 				isRecursive), isRecursive);
 	}
 
-	public TagNode findElementWithValueAttNamesAndValues(String value,
+	public TagNode findElementWithNameAndValueAndAttNamesAndValues(String elementName,
+			String elementValue, Collection<String> nameColl,
+			Collection<String> valColl, boolean isRecursive,
+			boolean isCaseSensitive) {
+		return findElement(new TagNodeNameValueAttNamesAndValuesCondition(
+				nameColl, valColl, elementName, elementValue, isCaseSensitive),
+				isRecursive);
+	}
+
+	public TagNode[] getElementsWithNameAndValueAndAttNamesAndValues(
+			String elementName, String elementValue, Collection<String> nameColl,
+			Collection<String> valColl, boolean isRecursive,
+			boolean isCaseSensitive) {
+		return getElements(new TagNodeNameValueAttNamesAndValuesCondition(
+				nameColl, valColl, elementName, elementValue, isCaseSensitive),
+				isRecursive);
+	}
+
+	public TagNode findElementWithValueAttNamesAndValues(String elementValue,
 			Collection<String> nameColl, Collection<String> valColl,
 			boolean isRecursive, boolean isCaseSensitive) {
 		return findElement(new TagNodeValueAttNamesAndValuesCondition(nameColl,
-				valColl, value, isCaseSensitive), isRecursive);
+				valColl, elementValue, isCaseSensitive), isRecursive);
 	}
 
-	public TagNode[] getElementsWithValueAttNamesAndValues(String value,
+	public TagNode[] getElementsWithValueAttNamesAndValues(String elementValue,
 			Collection<String> nameColl, Collection<String> valColl,
 			boolean isRecursive, boolean isCaseSensitive) {
 		return getElements(new TagNodeValueAttNamesAndValuesCondition(nameColl,
-				valColl, value, isCaseSensitive), isRecursive);
+				valColl, elementValue, isCaseSensitive), isRecursive);
 	}
 
 	/**
