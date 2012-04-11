@@ -49,6 +49,7 @@ import java.util.ListIterator;
 import java.util.Map;
 import java.util.Set;
 import java.util.TreeMap;
+import java.util.regex.Pattern;
 
 /**
  * <p>
@@ -258,6 +259,41 @@ public class TagNode extends TagToken implements HtmlNode {
 				if (-1 != tagnode.getText().indexOf(this.tagValue)) {
 					return true;
 				}
+			}
+			return false;
+		}
+	}
+
+	public class TagNodeNamePatternAttNamesAndValuesCondition implements
+			ITagNodeCondition {
+
+		private List<TagNodeAttValueCondition> conditions = new ArrayList<TagNodeAttValueCondition>();
+		private Pattern tagValue;
+		private String elementName;
+
+		public TagNodeNamePatternAttNamesAndValuesCondition(
+				Collection<String> nameColl, Collection<String> valColl,
+				String elementName, Pattern value, boolean isCaseSensitive) {
+			this.tagValue = value;
+			this.elementName = elementName;
+
+			String[] names = nameColl.toArray(new String[nameColl.size()]);
+			String[] values = valColl.toArray(new String[valColl.size()]);
+			for (int i = 0; i < values.length; i++) {
+				conditions.add(new TagNodeAttValueCondition(names[i],
+						values[i], isCaseSensitive));
+			}
+		}
+
+		@Override
+		public boolean satisfy(TagNode tagnode) {
+			if (tagnode.getName().equals(this.elementName)) {
+				for (TagNodeAttValueCondition c : conditions) {
+					if (!c.satisfy(tagnode)) {
+						return false;
+					}
+				}
+				return this.tagValue.matcher(tagnode.getText()).find();
 			}
 			return false;
 		}
@@ -677,6 +713,24 @@ public class TagNode extends TagToken implements HtmlNode {
 			Collection<String> nameColl, Collection<String> valColl,
 			boolean isRecursive, boolean isCaseSensitive) {
 		return getElements(new TagNodeNameValueAttNamesAndValuesCondition(
+				nameColl, valColl, elementName, elementValue, isCaseSensitive),
+				isRecursive);
+	}
+	
+	public TagNode findElementWithNameAndPatternAndAttNamesAndValues(
+			String elementName, Pattern elementValue,
+			Collection<String> nameColl, Collection<String> valColl,
+			boolean isRecursive, boolean isCaseSensitive) {
+		return findElement(new TagNodeNamePatternAttNamesAndValuesCondition(
+				nameColl, valColl, elementName, elementValue, isCaseSensitive),
+				isRecursive);
+	}
+	
+	public TagNode[] getElementsWithNameAndPatternAndAttNamesAndValues(
+			String elementName, Pattern elementValue,
+			Collection<String> nameColl, Collection<String> valColl,
+			boolean isRecursive, boolean isCaseSensitive) {
+		return getElements(new TagNodeNamePatternAttNamesAndValuesCondition(
 				nameColl, valColl, elementName, elementValue, isCaseSensitive),
 				isRecursive);
 	}
