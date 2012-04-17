@@ -5,16 +5,16 @@
     with or without modification, are permitted provided that the following
     conditions are met:
 
-    * Redistributions of source code must retain the above
+ * Redistributions of source code must retain the above
       copyright notice, this list of conditions and the
       following disclaimer.
 
-    * Redistributions in binary form must reproduce the above
+ * Redistributions in binary form must reproduce the above
       copyright notice, this list of conditions and the
       following disclaimer in the documentation and/or other
       materials provided with the distribution.
 
-    * The name of HtmlCleaner may not be used to endorse or promote
+ * The name of HtmlCleaner may not be used to endorse or promote
       products derived from this software without specific prior
       written permission.
 
@@ -33,7 +33,7 @@
     You can contact Vladimir Nikic by sending e-mail to
     nikic_vladimir@yahoo.com. Please include the word "HtmlCleaner" in the
     subject line.
-*/
+ */
 
 package org.htmlcleaner;
 
@@ -42,219 +42,237 @@ package org.htmlcleaner;
  */
 public class CleanerProperties {
 
-    public static final String BOOL_ATT_SELF = "self";
-    public static final String BOOL_ATT_EMPTY = "empty";
-    public static final String BOOL_ATT_TRUE = "true";
+	public static final String BOOL_ATT_SELF = "self";
+	public static final String BOOL_ATT_EMPTY = "empty";
+	public static final String BOOL_ATT_TRUE = "true";
 
-    ITagInfoProvider tagInfoProvider = null;
+	ITagInfoProvider tagInfoProvider = null;
 
-    boolean advancedXmlEscape = true;
-    boolean transResCharsToNCR = false;
-    boolean useCdataForScriptAndStyle = true;
-    boolean translateSpecialEntities = true;
-    boolean transSpecialEntitiesToNCR = false;
-    boolean recognizeUnicodeChars = true;
-    boolean omitUnknownTags = false;
-    boolean treatUnknownTagsAsContent = false;
-    boolean omitDeprecatedTags = false;
-    boolean treatDeprecatedTagsAsContent = false;
-    boolean omitComments = false;
-    boolean omitXmlDeclaration = false;
-    boolean omitDoctypeDeclaration = true;
-    boolean omitHtmlEnvelope = false;
-    boolean useEmptyElementTags = true;
-    boolean allowMultiWordAttributes = true;
-    boolean allowHtmlInsideAttributes = false;
-    boolean ignoreQuestAndExclam = true;
-    boolean namespacesAware = true;
-    String hyphenReplacementInComment = "=";
-    String pruneTags = null;
-    String booleanAttributeValues = BOOL_ATT_SELF;
+	boolean advancedXmlEscape = true;
 
-    public ITagInfoProvider getTagInfoProvider() {
-        return tagInfoProvider;
-    }
+	boolean transResCharsToNCR = false;
+	boolean useCdataForScriptAndStyle = true;
+	boolean translateSpecialEntities = true;
+	boolean transSpecialEntitiesToNCR = false;
+	boolean recognizeUnicodeChars = true;
+	boolean omitUnknownTags = false;
+	boolean treatUnknownTagsAsContent = false;
+	boolean omitDeprecatedTags = false;
+	boolean treatDeprecatedTagsAsContent = false;
+	boolean omitComments = false;
+	boolean omitXmlDeclaration = false;
+	boolean omitDoctypeDeclaration = true;
+	boolean omitHtmlEnvelope = false;
+	boolean useEmptyElementTags = true;
+	boolean allowMultiWordAttributes = true;
+	boolean allowHtmlInsideAttributes = false;
+	boolean ignoreQuestAndExclam = true;
+	boolean namespacesAware = true;
+	String hyphenReplacementInComment = "=";
+	String pruneTags = null;
+	String booleanAttributeValues = BOOL_ATT_SELF;
 
-    public boolean isAdvancedXmlEscape() {
-        return advancedXmlEscape;
-    }
+	public String getBooleanAttributeValues() {
+		return booleanAttributeValues;
+	}
 
-    public void setAdvancedXmlEscape(boolean advancedXmlEscape) {
-        this.advancedXmlEscape = advancedXmlEscape;
-    }
+	public String getHyphenReplacementInComment() {
+		return hyphenReplacementInComment;
+	}
 
-    public boolean isTransResCharsToNCR() {
-        return transResCharsToNCR;
-    }
+	public String getPruneTags() {
+		return pruneTags;
+	}
 
-    public void setTransResCharsToNCR(boolean transResCharsToNCR) {
-        this.transResCharsToNCR = transResCharsToNCR;
-    }
+	public ITagInfoProvider getTagInfoProvider() {
+		return tagInfoProvider;
+	}
 
-    public boolean isUseCdataForScriptAndStyle() {
-        return useCdataForScriptAndStyle;
-    }
+	public boolean isAdvancedXmlEscape() {
+		return advancedXmlEscape;
+	}
 
-    public void setUseCdataForScriptAndStyle(boolean useCdataForScriptAndStyle) {
-        this.useCdataForScriptAndStyle = useCdataForScriptAndStyle;
-    }
+	public boolean isAllowHtmlInsideAttributes() {
+		return allowHtmlInsideAttributes;
+	}
 
-    public boolean isTranslateSpecialEntities() {
-        return translateSpecialEntities;
-    }
+	public boolean isAllowMultiWordAttributes() {
+		return allowMultiWordAttributes;
+	}
 
-    public void setTranslateSpecialEntities(boolean translateSpecialEntities) {
-        this.translateSpecialEntities = translateSpecialEntities;
-    }
+	public boolean isIgnoreQuestAndExclam() {
+		return ignoreQuestAndExclam;
+	}
 
-    public boolean isTransSpecialEntitiesToNCR() {
-        return transSpecialEntitiesToNCR;
-    }
+	public boolean isNamespacesAware() {
+		return namespacesAware;
+	}
 
-    public void setTransSpecialEntitiesToNCR(boolean transSpecialEntitiesToNCR) {
-        this.transSpecialEntitiesToNCR = transSpecialEntitiesToNCR;
-    }
+	public boolean isOmitComments() {
+		return omitComments;
+	}
 
-    public boolean isRecognizeUnicodeChars() {
-        return recognizeUnicodeChars;
-    }
+	public boolean isOmitDeprecatedTags() {
+		return omitDeprecatedTags;
+	}
 
-    public void setRecognizeUnicodeChars(boolean recognizeUnicodeChars) {
-        this.recognizeUnicodeChars = recognizeUnicodeChars;
-    }
+	public boolean isOmitDoctypeDeclaration() {
+		return omitDoctypeDeclaration;
+	}
 
-    public boolean isOmitUnknownTags() {
-        return omitUnknownTags;
-    }
+	public boolean isOmitHtmlEnvelope() {
+		return omitHtmlEnvelope;
+	}
 
-    public void setOmitUnknownTags(boolean omitUnknownTags) {
-        this.omitUnknownTags = omitUnknownTags;
-    }
+	public boolean isOmitUnknownTags() {
+		return omitUnknownTags;
+	}
 
-    public boolean isTreatUnknownTagsAsContent() {
-        return treatUnknownTagsAsContent;
-    }
+	public boolean isOmitXmlDeclaration() {
+		return omitXmlDeclaration;
+	}
 
-    public void setTreatUnknownTagsAsContent(boolean treatUnknownTagsAsContent) {
-        this.treatUnknownTagsAsContent = treatUnknownTagsAsContent;
-    }
+	public boolean isRecognizeUnicodeChars() {
+		return recognizeUnicodeChars;
+	}
 
-    public boolean isOmitDeprecatedTags() {
-        return omitDeprecatedTags;
-    }
+	public boolean isTranslateSpecialEntities() {
+		return translateSpecialEntities;
+	}
 
-    public void setOmitDeprecatedTags(boolean omitDeprecatedTags) {
-        this.omitDeprecatedTags = omitDeprecatedTags;
-    }
+	public boolean isTransResCharsToNCR() {
+		return transResCharsToNCR;
+	}
 
-    public boolean isTreatDeprecatedTagsAsContent() {
-        return treatDeprecatedTagsAsContent;
-    }
+	public boolean isTransSpecialEntitiesToNCR() {
+		return transSpecialEntitiesToNCR;
+	}
 
-    public void setTreatDeprecatedTagsAsContent(boolean treatDeprecatedTagsAsContent) {
-        this.treatDeprecatedTagsAsContent = treatDeprecatedTagsAsContent;
-    }
+	public boolean isTreatDeprecatedTagsAsContent() {
+		return treatDeprecatedTagsAsContent;
+	}
 
-    public boolean isOmitComments() {
-        return omitComments;
-    }
+	public boolean isTreatUnknownTagsAsContent() {
+		return treatUnknownTagsAsContent;
+	}
 
-    public void setOmitComments(boolean omitComments) {
-        this.omitComments = omitComments;
-    }
+	public boolean isUseCdataForScriptAndStyle() {
+		return useCdataForScriptAndStyle;
+	}
 
-    public boolean isOmitXmlDeclaration() {
-        return omitXmlDeclaration;
-    }
+	public boolean isUseEmptyElementTags() {
+		return useEmptyElementTags;
+	}
 
-    public void setOmitXmlDeclaration(boolean omitXmlDeclaration) {
-        this.omitXmlDeclaration = omitXmlDeclaration;
-    }
+	public void setAdvancedXmlEscape(boolean advancedXmlEscape) {
+		this.advancedXmlEscape = advancedXmlEscape;
+	}
 
-    public boolean isOmitDoctypeDeclaration() {
-        return omitDoctypeDeclaration;
-    }
+	public void setAllowHtmlInsideAttributes(boolean allowHtmlInsideAttributes) {
+		this.allowHtmlInsideAttributes = allowHtmlInsideAttributes;
+	}
 
-    public void setOmitDoctypeDeclaration(boolean omitDoctypeDeclaration) {
-        this.omitDoctypeDeclaration = omitDoctypeDeclaration;
-    }
+	public void setAllowMultiWordAttributes(boolean allowMultiWordAttributes) {
+		this.allowMultiWordAttributes = allowMultiWordAttributes;
+	}
 
-    public boolean isOmitHtmlEnvelope() {
-        return omitHtmlEnvelope;
-    }
+	public void setBooleanAttributeValues(String booleanAttributeValues) {
+		if (BOOL_ATT_SELF.equalsIgnoreCase(booleanAttributeValues)
+				|| BOOL_ATT_EMPTY.equalsIgnoreCase(booleanAttributeValues)
+				|| BOOL_ATT_TRUE.equalsIgnoreCase(booleanAttributeValues)) {
+			this.booleanAttributeValues = booleanAttributeValues.toLowerCase();
+		} else {
+			this.booleanAttributeValues = BOOL_ATT_SELF;
+		}
+	}
 
-    public void setOmitHtmlEnvelope(boolean omitHtmlEnvelope) {
-        this.omitHtmlEnvelope = omitHtmlEnvelope;
-    }
+	public void setHyphenReplacementInComment(String hyphenReplacementInComment) {
+		this.hyphenReplacementInComment = hyphenReplacementInComment;
+	}
 
-    public boolean isUseEmptyElementTags() {
-        return useEmptyElementTags;
-    }
+	public void setIgnoreQuestAndExclam(boolean ignoreQuestAndExclam) {
+		this.ignoreQuestAndExclam = ignoreQuestAndExclam;
+	}
 
-    public void setUseEmptyElementTags(boolean useEmptyElementTags) {
-        this.useEmptyElementTags = useEmptyElementTags;
-    }
+	public void setNamespacesAware(boolean namespacesAware) {
+		this.namespacesAware = namespacesAware;
+	}
 
-    public boolean isAllowMultiWordAttributes() {
-        return allowMultiWordAttributes;
-    }
+	public void setOmitComments(boolean omitComments) {
+		this.omitComments = omitComments;
+	}
 
-    public void setAllowMultiWordAttributes(boolean allowMultiWordAttributes) {
-        this.allowMultiWordAttributes = allowMultiWordAttributes;
-    }
+	public void setOmitDeprecatedTags(boolean omitDeprecatedTags) {
+		this.omitDeprecatedTags = omitDeprecatedTags;
+	}
 
-    public boolean isAllowHtmlInsideAttributes() {
-        return allowHtmlInsideAttributes;
-    }
+	public void setOmitDoctypeDeclaration(boolean omitDoctypeDeclaration) {
+		this.omitDoctypeDeclaration = omitDoctypeDeclaration;
+	}
 
-    public void setAllowHtmlInsideAttributes(boolean allowHtmlInsideAttributes) {
-        this.allowHtmlInsideAttributes = allowHtmlInsideAttributes;
-    }
+	public void setOmitHtmlEnvelope(boolean omitHtmlEnvelope) {
+		this.omitHtmlEnvelope = omitHtmlEnvelope;
+	}
 
-    public boolean isIgnoreQuestAndExclam() {
-        return ignoreQuestAndExclam;
-    }
+	public void setOmitUnknownTags(boolean omitUnknownTags) {
+		this.omitUnknownTags = omitUnknownTags;
+	}
 
-    public void setIgnoreQuestAndExclam(boolean ignoreQuestAndExclam) {
-        this.ignoreQuestAndExclam = ignoreQuestAndExclam;
-    }
+	public void setOmitXmlDeclaration(boolean omitXmlDeclaration) {
+		this.omitXmlDeclaration = omitXmlDeclaration;
+	}
 
-    public boolean isNamespacesAware() {
-        return namespacesAware;
-    }
+	public void setPruneTags(String pruneTags) {
+		this.pruneTags = pruneTags;
+	}
 
-    public void setNamespacesAware(boolean namespacesAware) {
-        this.namespacesAware = namespacesAware;
-    }
+	public void setRecognizeUnicodeChars(boolean recognizeUnicodeChars) {
+		this.recognizeUnicodeChars = recognizeUnicodeChars;
+	}
 
-    public String getHyphenReplacementInComment() {
-        return hyphenReplacementInComment;
-    }
+	public void setTagInfoProvider(ITagInfoProvider tagInfoProvider) {
+		this.tagInfoProvider = tagInfoProvider;
+	}
 
-    public void setHyphenReplacementInComment(String hyphenReplacementInComment) {
-        this.hyphenReplacementInComment = hyphenReplacementInComment;
-    }
+	public void setTranslateSpecialEntities(boolean translateSpecialEntities) {
+		this.translateSpecialEntities = translateSpecialEntities;
+	}
 
-    public String getPruneTags() {
-        return pruneTags;
-    }
+	public void setTransResCharsToNCR(boolean transResCharsToNCR) {
+		this.transResCharsToNCR = transResCharsToNCR;
+	}
 
-    public void setPruneTags(String pruneTags) {
-        this.pruneTags = pruneTags;
-    }
+	public void setTransSpecialEntitiesToNCR(boolean transSpecialEntitiesToNCR) {
+		this.transSpecialEntitiesToNCR = transSpecialEntitiesToNCR;
+	}
 
-    public String getBooleanAttributeValues() {
-        return booleanAttributeValues;
-    }
+	public void setTreatDeprecatedTagsAsContent(
+			boolean treatDeprecatedTagsAsContent) {
+		this.treatDeprecatedTagsAsContent = treatDeprecatedTagsAsContent;
+	}
 
-    public void setBooleanAttributeValues(String booleanAttributeValues) {
-        if ( BOOL_ATT_SELF.equalsIgnoreCase(booleanAttributeValues) ||
-             BOOL_ATT_EMPTY.equalsIgnoreCase(booleanAttributeValues) ||
-             BOOL_ATT_TRUE.equalsIgnoreCase(booleanAttributeValues) ) {
-            this.booleanAttributeValues = booleanAttributeValues.toLowerCase();
-        } else {
-            this.booleanAttributeValues = BOOL_ATT_SELF;    
-        }
-    }
-    
+	public void setTreatUnknownTagsAsContent(boolean treatUnknownTagsAsContent) {
+		this.treatUnknownTagsAsContent = treatUnknownTagsAsContent;
+	}
+
+	public void setUseCdataForScriptAndStyle(boolean useCdataForScriptAndStyle) {
+		this.useCdataForScriptAndStyle = useCdataForScriptAndStyle;
+	}
+
+	public void setUseEmptyElementTags(boolean useEmptyElementTags) {
+		this.useEmptyElementTags = useEmptyElementTags;
+	}
+
+	public static CleanerProperties getDefaultInstance() {
+		CleanerProperties props = new CleanerProperties();
+		props = new CleanerProperties();
+		props.setTagInfoProvider(DefaultTagProvider.getInstance());
+		props.setOmitXmlDeclaration(true);
+		props.setTranslateSpecialEntities(true);
+		props.setTransResCharsToNCR(true);
+		props.setOmitComments(true);
+		props.setTagInfoProvider(DefaultTagProvider.getInstance());
+		return props;
+	}
+
 }

@@ -30,6 +30,22 @@ public class TagNodePatternValueAttNamesAndValuesConditionTest extends TestCase 
 		assertEquals("This is an error", result.getText().toString().trim());
 	}
 
+	public void testFindNested() throws Exception {
+		TagNode node = cleaner
+				.clean(new File("src/test/resources/test10.html"));
+		Map<String, String> attrMap = new HashMap<String, String>();
+		attrMap.put("id", "x");
+		TagNode result = node
+				.findElementWithNameAndPatternAndAttNamesAndValues("p",
+						Pattern.compile("<li>abc</li>"), attrMap.keySet(),
+						attrMap.values(), true, false);
+		assertNotNull(result);
+		assertEquals(attrMap, result.getAttributes());
+		CleanerProperties props = CleanerProperties.getDefaultInstance();
+		assertEquals("<ul> \n<li>abc</li> \n<li>xyz</li> </ul>", result.renderChildren(result,
+				new BrowserCompactXmlSerializer(props)));
+	}
+
 	public void testGet() throws Exception {
 		TagNode node = cleaner
 				.clean(new File("src/test/resources/test10.html"));

@@ -268,14 +268,18 @@ public class TagNode extends TagToken implements HtmlNode {
 			ITagNodeCondition {
 
 		private List<TagNodeAttValueCondition> conditions = new ArrayList<TagNodeAttValueCondition>();
-		private Pattern tagValue;
+		private Pattern valueRegex;
 		private String elementName;
+		private CleanerProperties cp;
+		private Serializer serializer;
 
 		public TagNodeNamePatternAttNamesAndValuesCondition(
 				Collection<String> nameColl, Collection<String> valColl,
 				String elementName, Pattern value, boolean isCaseSensitive) {
-			this.tagValue = value;
+			this.valueRegex = value;
 			this.elementName = elementName;
+			this.cp = CleanerProperties.getDefaultInstance();
+			this.serializer = new BrowserCompactXmlSerializer(cp);
 
 			String[] names = nameColl.toArray(new String[nameColl.size()]);
 			String[] values = valColl.toArray(new String[valColl.size()]);
@@ -293,7 +297,11 @@ public class TagNode extends TagToken implements HtmlNode {
 						return false;
 					}
 				}
-				return this.tagValue.matcher(tagnode.getText()).find();
+				if (this.valueRegex.matcher(tagnode.getText()).find()) {
+					return true;
+				}
+				return this.valueRegex.matcher(
+						renderChildren(tagnode, this.serializer)).find();
 			}
 			return false;
 		}
@@ -310,6 +318,28 @@ public class TagNode extends TagToken implements HtmlNode {
 
 	public TagNode(String name) {
 		super(name == null ? null : name.toLowerCase());
+	}
+
+	/**
+	 * Renders markup within a given @TagNode
+	 * 
+	 * @param tagnode
+	 * @param serializer
+	 * @return String rendered children
+	 */
+	public String renderChildren(TagNode tagnode, Serializer serializer) {
+		int myChildPosition = tagnode.getParent().getChildIndex(tagnode);
+		HtmlNode child = (HtmlNode) tagnode.getParent().children
+				.get(1 + myChildPosition);
+		try {
+			if (child instanceof TagNode) {
+				return serializer.getAsString((TagNode) child);
+			} else {
+				return ((ContentNode) child).getContent().toString();
+			}
+		} catch (IOException e) {
+			throw new RuntimeException(e);
+		}
 	}
 
 	/**
@@ -716,7 +746,7 @@ public class TagNode extends TagToken implements HtmlNode {
 				nameColl, valColl, elementName, elementValue, isCaseSensitive),
 				isRecursive);
 	}
-	
+
 	public TagNode findElementWithNameAndPatternAndAttNamesAndValues(
 			String elementName, Pattern elementValue,
 			Collection<String> nameColl, Collection<String> valColl,
@@ -725,7 +755,7 @@ public class TagNode extends TagToken implements HtmlNode {
 				nameColl, valColl, elementName, elementValue, isCaseSensitive),
 				isRecursive);
 	}
-	
+
 	public TagNode[] getElementsWithNameAndPatternAndAttNamesAndValues(
 			String elementName, Pattern elementValue,
 			Collection<String> nameColl, Collection<String> valColl,
