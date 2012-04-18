@@ -298,9 +298,19 @@ public class TagNode extends TagToken implements HtmlNode {
 						return false;
 					}
 				}
+				// First try matching against the text
 				if (this.valueRegex.matcher(tagnode.getText()).find()) {
 					return true;
 				}
+				// Then try matching against a rendered version of the node.
+				try {
+					if(this.valueRegex.matcher(serializer.getAsString(tagnode)).find()) {
+						return true;
+					}
+				} catch (IOException e) {
+					throw new RuntimeException(e);
+				}
+				// Then try and match against it's next child.
 				return this.valueRegex.matcher(renderChildren(tagnode, this.serializer)).find();
 			}
 			return false;
@@ -334,7 +344,7 @@ public class TagNode extends TagToken implements HtmlNode {
 			if (child instanceof TagNode) {
 				return serializer.getAsString((TagNode) child);
 			} else {
-				return serializer.getAsString(tagnode);
+				return serializer.getAsString(tagnode); // TODO this branch is probably not necessary
 			}
 		} catch (IOException e) {
 			throw new RuntimeException(e);
