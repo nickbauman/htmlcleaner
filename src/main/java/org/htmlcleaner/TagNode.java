@@ -293,7 +293,8 @@ public class TagNode extends TagToken implements HtmlNode {
 		public boolean satisfy(TagNode tagnode) {
 			if (tagnode.getName().equals(this.elementName)) {
 				for (TagNodeAttValueCondition c : conditions) {
-					if (!c.satisfy(tagnode)) {
+					boolean found = c.satisfy(tagnode);
+					if (!found) {
 						return false;
 					}
 				}

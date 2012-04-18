@@ -53,12 +53,12 @@ public class TagNodePatternValueAttNamesAndValuesConditionTest extends TestCase 
 		attrMap.put("id", "y");
 		TagNode result = node
 		.findElementWithNameAndPatternAndAttNamesAndValues("p",
-				Pattern.compile(".*This is a content node chunk.*"), attrMap.keySet(),
+				Pattern.compile(".*This is another tag node.*"), attrMap.keySet(),
 				attrMap.values(), true, false);
 		assertNotNull(result);
 		assertEquals(attrMap, result.getAttributes());
 		CleanerProperties props = CleanerProperties.getDefaultInstance();
-		assertEquals("<p id=\"y\"> This is a content node chunk \n<span>This is another tag node</span> </p>", result.renderChildren(result,
+		assertEquals("<p id=\"y\"> This is a content node chunk \n<span><p>This is another tag node</p></span> </p>", result.renderChildren(result,
 				new BrowserCompactXmlSerializer(props)));
 	}
 
