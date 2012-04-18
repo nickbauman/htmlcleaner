@@ -300,8 +300,7 @@ public class TagNode extends TagToken implements HtmlNode {
 				if (this.valueRegex.matcher(tagnode.getText()).find()) {
 					return true;
 				}
-				return this.valueRegex.matcher(
-						renderChildren(tagnode, this.serializer)).find();
+				return this.valueRegex.matcher(renderChildren(tagnode, this.serializer)).find();
 			}
 			return false;
 		}
@@ -320,6 +319,7 @@ public class TagNode extends TagToken implements HtmlNode {
 		super(name == null ? null : name.toLowerCase());
 	}
 
+
 	/**
 	 * Renders markup within a given @TagNode
 	 * 
@@ -328,18 +328,24 @@ public class TagNode extends TagToken implements HtmlNode {
 	 * @return String rendered children
 	 */
 	public String renderChildren(TagNode tagnode, Serializer serializer) {
-		int myChildPosition = tagnode.getParent().getChildIndex(tagnode);
-		HtmlNode child = (HtmlNode) tagnode.getParent().children
-				.get(1 + myChildPosition);
+		HtmlNode child = nextChild(tagnode);
 		try {
 			if (child instanceof TagNode) {
 				return serializer.getAsString((TagNode) child);
 			} else {
-				return ((ContentNode) child).getContent().toString();
+				return serializer.getAsString(tagnode);
 			}
 		} catch (IOException e) {
 			throw new RuntimeException(e);
 		}
+	}
+
+
+	private HtmlNode nextChild(TagNode tagnode) {
+		int myChildPosition = tagnode.getParent().getChildIndex(tagnode);
+		HtmlNode child = (HtmlNode) tagnode.getParent().children
+				.get(1 + myChildPosition);
+		return child;
 	}
 
 	/**

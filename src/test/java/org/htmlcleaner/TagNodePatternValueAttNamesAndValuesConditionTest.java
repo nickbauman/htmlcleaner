@@ -45,6 +45,22 @@ public class TagNodePatternValueAttNamesAndValuesConditionTest extends TestCase 
 		assertEquals("<ul> \n<li>abc</li> \n<li>xyz</li> </ul>", result.renderChildren(result,
 				new BrowserCompactXmlSerializer(props)));
 	}
+	
+	public void testFindNestedWithCompositeContent() throws Exception {
+		TagNode node = cleaner
+		.clean(new File("src/test/resources/test10.html"));
+		Map<String, String> attrMap = new HashMap<String, String>();
+		attrMap.put("id", "y");
+		TagNode result = node
+		.findElementWithNameAndPatternAndAttNamesAndValues("p",
+				Pattern.compile(".*This is a content node chunk.*"), attrMap.keySet(),
+				attrMap.values(), true, false);
+		assertNotNull(result);
+		assertEquals(attrMap, result.getAttributes());
+		CleanerProperties props = CleanerProperties.getDefaultInstance();
+		assertEquals("<p id=\"y\"> This is a content node chunk \n<span>This is another tag node</span> </p>", result.renderChildren(result,
+				new BrowserCompactXmlSerializer(props)));
+	}
 
 	public void testGet() throws Exception {
 		TagNode node = cleaner
