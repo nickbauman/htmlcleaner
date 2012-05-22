@@ -13,6 +13,7 @@
 	<scm>
 		<connection>scm:git:git://github.com/nickbauman/htmlcleaner.git</connection>
 		<developerConnection>scm:git:ssh://git@github.com/nickbauman/htmlcleaner.git</developerConnection>
+		<tag>21cbac379868ed0b16604fd8e36b2c9a81040c21</tag>
 		<url>https://github.com/nickbauman/htmlcleaner</url>
 	</scm>
 	<build>

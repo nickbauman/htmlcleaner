@@ -1,6 +1,10 @@
 # HtmlCleaner
 
-Copyright (c) 2006-2012, Vladimir Nikic and the HtmlCleaner team. All rights reserved.
+Copyright (c) 2006-2012, Vladimir Nikic and the HtmlCleaner team. 
+All rights reserved.
+
+Additions Copyright (c) 2012, Nick Bauman, donated back to the original 
+maintainer if Vlad ever wants them.
 
 	This is a fork of the orginal HtmlCleaner project by Vladimir Nikic found on http://htmlcleaner.sourceforge.net/
 
@@ -9,7 +13,12 @@ type, the core of this library. And JUnit tests for that as well. I forked this
 code because it seemed like one of the better HTML parsers out there, with a 
 decent XPath implementation.
 
-The original HtmlCleaner codebase appears to be abandoned, no changes since Feb 2011.
+I pushed this fork to Clojars a while back, so you can use it in a leiningen project like so:
+
+	[htmlcleaner "2.2.4"]
+
+The original HtmlCleaner codebase appears to be abandoned, no changes since Feb
+2011. The original license is as follows and still applies:
 
 	Redistribution and use of this software in source and binary forms, 
 	with or without modification, are permitted provided that the 
